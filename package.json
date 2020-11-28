@@ -1,0 +1,33 @@
+{
+  "name": "crmapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djpabloac/CrmApp.git"
+  },
+  "keywords": [
+    "crm"
+  ],
+  "author": "Pablo Arteaga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djpabloac/CrmApp/issues"
+  },
+  "homepage": "https://github.com/djpabloac/CrmApp#readme",
+  "dependencies": {
+    "apollo-server": "^2.19.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.15"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
