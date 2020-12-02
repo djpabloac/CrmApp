@@ -20,8 +20,8 @@ const leerToken = async (token, secreta) => {
 
 const resolvers = {
     Query: {
-        obtenerUsuario: async (_, {token}) => {
-            return await leerToken(token, process.env.SECRETA);
+        obtenerUsuario: async (_, {}, ctx) => {
+            return ctx.usuario;
         },
         obtenerProductos: async () => {
             try {
