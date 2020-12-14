@@ -2,7 +2,17 @@ const mongoose = require('mongoose');
 
 const PedidosSchema = mongoose.Schema({
     pedido: {
-        type: Array,
+        type: [{
+            producto: {
+                type: mongoose.Schema.Types.ObjectId,
+                required: true,
+                ref: 'Producto'
+            },
+            cantidad: {
+                type: Number,
+                required: true
+            }
+        }],
         required: true
     },
     total: {

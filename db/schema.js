@@ -61,6 +61,7 @@ const typeDefs = gql`
 
     type PedidoProductoQuery {
         id: ID
+        producto: Producto
         cantidad: Int
     }
 
@@ -74,15 +75,15 @@ const typeDefs = gql`
         id: ID
         pedido: [PedidoProductoQuery]
         total: Float
-        cliente: ID
+        cliente: Cliente
         vendedor: ID
         estado: EstadoPedido
         creado: String
     }
 
     input PedidoProductoInput {
-        id: ID
-        cantidad: Int
+        producto: ID!
+        cantidad: Int!
     }
 
     input PedidoInput {

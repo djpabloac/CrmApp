@@ -85,7 +85,7 @@ const resolvers = {
         },
         obtenerPedidosVendedor: async (_, {}, ctx) => {
             try {
-                const pedidos = await Pedido.find({ vendedor: ctx.usuario.id.toString() });
+                const pedidos = await Pedido.find({ vendedor: ctx.usuario.id.toString() }).populate('cliente').populate('pedido.producto');
                 return pedidos;
             } catch (error) {
                 console.log('Error al obtener los pedidos por vendedor');
@@ -325,19 +325,19 @@ const resolvers = {
 
             //Revisar stock
             for await (const pedido of input.pedido) {
-                const { id } = pedido;
-                const producto = await Producto.findById(id);
-
-                if (!producto) {
-                    throw new Error(`El producto: ${producto.nombre} no existe`);
+                const { producto } = pedido;
+                const productoExiste = await Producto.findById(producto);
+                
+                if (!productoExiste) {
+                    throw new Error(`El producto no existe`);
                 }
 
-                if (pedido.cantidad > producto.existencia) {
-                    throw new Error(`El producto: ${producto.nombre} excede la cantidad disponible`);
+                if (pedido.cantidad > productoExiste.existencia) {
+                    throw new Error(`El producto: ${productoExiste.nombre} excede la cantidad disponible`);
                 }
                 else {
-                    producto.existencia = producto.existencia - pedido.cantidad;
-                    await producto.save();
+                    productoExiste.existencia = productoExiste.existencia - pedido.cantidad;
+                    await productoExiste.save();
                 }
             }
 
