@@ -63,6 +63,7 @@ const typeDefs = gql`
         id: ID
         producto: Producto
         cantidad: Int
+        precio: Float
     }
 
     enum EstadoPedido {
@@ -84,6 +85,7 @@ const typeDefs = gql`
     input PedidoProductoInput {
         producto: ID!
         cantidad: Int!
+        precio: Float!
     }
 
     input PedidoInput {

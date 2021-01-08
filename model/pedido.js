@@ -11,6 +11,10 @@ const PedidosSchema = mongoose.Schema({
             cantidad: {
                 type: Number,
                 required: true
+            },
+            precio: {
+                type: Number,
+                required: true
             }
         }],
         required: true

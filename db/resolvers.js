@@ -417,15 +417,15 @@ const resolvers = {
             //Retornar stock
             if(pedido.pedido) {
                 for await (const pedidoItem of pedido.pedido) {
-                    const { id, cantidad } = pedidoItem;
-                    const producto = await Producto.findById(id);
+                    const { producto, cantidad } = pedidoItem;
+                    const productoExiste = await Producto.findById(producto);
     
-                    if (!producto) {
-                        throw new Error(`El producto: ${producto.nombre} no existe`);
+                    if (!productoExiste) {
+                        throw new Error(`El producto: ${productoExiste.nombre} no existe`);
                     }
                     
-                    producto.existencia = producto.existencia + cantidad;
-                    await producto.save();
+                    productoExiste.existencia = productoExiste.existencia + cantidad;
+                    await productoExiste.save();
                 }
             }
 
